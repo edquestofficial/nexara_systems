@@ -3,359 +3,519 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexara Systems - Coming Soon</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #16213e 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #e0e0e0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Animated background elements */
-        .background-decoration {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .blob1 {
-            width: 300px;
-            height: 300px;
-            background: #00d4ff;
-            top: -50px;
-            left: -50px;
-            animation-delay: 0s;
-        }
-
-        .blob2 {
-            width: 200px;
-            height: 200px;
-            background: #00ff88;
-            bottom: -50px;
-            right: -50px;
-            animation-delay: 2s;
-        }
-
-        .blob3 {
-            width: 250px;
-            height: 250px;
-            background: #ff006e;
-            top: 50%;
-            right: 10%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(20px, -20px); }
-            50% { transform: translate(-20px, 20px); }
-            75% { transform: translate(20px, 20px); }
-        }
-
-        .container {
-            max-width: 800px;
-            width: 90%;
-            text-align: center;
-            position: relative;
-            z-index: 1;            -webkit-backdrop-filter: blur(10px);            backdrop-filter : blur(10px);
-            background: rgba(15, 23, 42, 0.8);
-            padding: 60px 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            animation: slideUp 0.8s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .logo {
-            font-size: 48px;
-            margin-bottom: 20px;
-            animation: glow 2s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
-            50% { text-shadow: 0 0 40px rgba(0, 212, 255, 0.8); }
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #00d4ff, #00ff88);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
-        }
-
-        .subtitle {
-            font-size: 1.3rem;
-            color: #b0b0b0;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-
-        .description {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: #9ca3af;
-            margin-bottom: 50px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .countdown {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 15px;
-            margin-bottom: 50px;
-        }
-
-        .countdown-item {
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .countdown-item:hover {
-            background: rgba(0, 212, 255, 0.2);
-            border-color: rgba(0, 212, 255, 0.6);
-            transform: translateY(-5px);
-        }
-
-        .countdown-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #00d4ff;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .countdown-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #7ca3b3;
-        }
-
-        .email-signup {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        input[type="email"] {
-            flex: 1;
-            min-width: 250px;
-            padding: 15px 20px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            background: rgba(0, 212, 255, 0.05);
-            color: #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        input[type="email"]:focus {
-            outline: none;
-            border-color: #00d4ff;
-            background: rgba(0, 212, 255, 0.1);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-        }
-
-        input[type="email"]::placeholder {
-            color: #7ca3b3;
-        }
-
-        button {
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #00d4ff, #00ff88);
-            color: #0a0e27;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
-        }
-
-        button:active {
-            transform: translateY(-1px);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .social-link {
-            width: 45px;
-            height: 45px;
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #00d4ff;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .social-link:hover {
-            background: rgba(0, 212, 255, 0.1);
-            border-color: #00d4ff;
-            transform: translateY(-3px);
-        }
-
-        .footer {
-            position: fixed;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: #7ca3b3;
-            font-size: 0.9rem;
-            z-index: 1;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .container {
-                padding: 40px 25px;
-                margin: 20px;
-            }
-
-            .countdown {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            input[type="email"] {
-                min-width: 100%;
-            }
-        }
-    </style>
+    <title> Nexara System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
-    <div class="background-decoration">
-        <div class="blob blob1"></div>
-        <div class="blob blob2"></div>
-        <div class="blob blob3"></div>
-    </div>
+    <div class="universe">
+        <div class="main">
+            <!-- navbar -->
+            <div class="navbar">
+                <div class="logo">
+                    <div><img class="leaf-icon" src="/images/logo.png"></img></div>
+                    <div><h2>Nexara Systems</h2>
+                    </div>
+                </div>
+                <div class="nav-texts" id="navMenu">
+                    <button class="home" onclick="location.href='#homee'; toggleMenu();">Home</button>
+                    <button class="about" onclick="location.href='#who-we-are'; toggleMenu();">About</button>
+                    <button class="services" onclick="location.href='#services'; toggleMenu();">Services</button>
+                    <button class="industries" onclick="location.href='#industries-we-serve'; toggleMenu();">Industries</button>
+                    <button class="get-started" onclick="location.href='#contactt'; toggleMenu();">Get Started</button>
 
-    <div class="container">
-        <div class="logo">🚀</div>
-        <h1>NEXARA SYSTEMS</h1>
-        <p class="subtitle">Something Amazing is Coming Soon</p>
+                </div>
+                  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+            </div>
+            <!-- hero page -->
+                <div class="section1" id="homee">
+                <div class="section  ">
+                    <div class="cleanair"><div class="blink-light"></div><p>Technology & Infrastructure Solutions</p></div>
+                   <div class="smart">Smart Infrastructure. <br>Intelligent Solutions. <br><span class="reliable">Reliable Execution.</span></div>
+                   <div class="caption"><p>Nexara Systems Pvt. Ltd. is a comprehensive technology and<br>infrastructure solutions company delivering end-to-end services across<br>security systems, renewable energy, electrical turnkey projects, AI<br>software, fire safety, and IT infrastructure.</p></div>
+                    <div class="caption1">We serve residential, commercial, industrial, and institutional clients with a<br>strong focus on quality, safety, and future-ready technology.</div>
+                   <div class="buttons">
+                    <button class="request" onclick="location.href='#contactt'">Get Started →</button>
+                    <button class="explore" onclick="location.href='#services'">Explore Services</button>
+                  </div>
+                </div >
+                    <div class="section2  ">
+                    <img src="/images/image.jpg" class="image-hero">
+                    </div>
+                 </div>
+            <!-- who we are -->
+                 <div class="main1" id="who-we-are">
+                   <div class="textdiv">
+                    <div class="texdiv1"> 
+                    <h1 class="h1">Who We Are</h1>
+                    <p class="p1">Nexara Systems Pvt. Ltd. is a multi-domain solution provider specializing in integrated<br>infrastructure and intelligent systems. From planning and design to installation and<br>maintenance, we deliver reliable, scalable, and cost-effective solutions tailored to our client's needs.</p>
+                    <p class="p2">Our expertise spans security, energy, electrical, IT, AI, and fire safety infrastructure, making us a single trusted partner for complete project execution.</p>
+                    </div>
+                   </div>
+                   <div class="threediv">
+                       <div class="div1">
+                        <div class="svg"><svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            class="icon lucide lucide-workflow"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                            <path d="M10 10h4v4h-4z" fill="none" stroke="currentColor"></path>
+                        </svg></div>
+                        <h3 class="clean">End-to-End Solutions</h3>
+                        <p class="reduce">From planning and design to<br>installation and maintenance</p>
+                        </div>
+                         <div class="div1">
+                        <div class="svg1"> <svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="icon1 lucide lucide-users">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        </div>
+                        <h3 class="clean">Expert Team</h3>
+                        <p class="reduce">Experienced professionals across multiple domains</p>
+                        </div>
+                         <div class="div1">
+                        <div class="svg2"><svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="icon2 lucide lucide-shield-check">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="M9 12l2 2 4-4"></path>
+                        </svg></div>
+                        <h3 class="clean">Quality Focus</h3>
+                        <p class="reduce">Delivering reliable, scalable,<br>and cost-effective solutions</p>
+                        </div>
+                           <div class="div1">
+                        <div class="svg 3"><svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            class="icon lucide lucide-zap"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg></div>
+                        <h3 class="clean">Future-Ready</h3>
+                        <p class="reduce">Cutting-edge technology for tomorrow's challenges</p>
+                        </div>
+                       
+                   </div>
+             </div> 
+              <!-- our services -->
+                <div class="ourservices" id="services">
+                <div class="texdiv1">
+                <h1 class="h1">Our Services</h1>
+                    <p class="p1">Comprehensive solutions across multiple domains to meet all your infrastructure and technology needs.</p>
+                    </div>
+                    <div class="cards1">
+                        <div class="card1">
+                           <div class="image1"><img src="/images/camera.png" class="image" alt="CCTV"></div>
+                           <div class="card-text">
+                                <h3>CCTV & Surveillance Solutions</h3>
+                                <p class="para">Advanced CCTV and surveillance systems for homes, businesses, industries, and<br>campuses.</p>
+                                <ul>
+                                    <li>HD & IP Camera Installation</li>
+                                    <li>Indoor & Outdoor Surveillance</li>
+                                    <li>Centralized Monitoring Systems</li>
+                                    <li>VMS and analytics in CCTV</li>
+                                    <li>AMC & Maintenance Support</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card1">
+                           <div class="image1"><img src="/images/solar.png" class="image" alt="CCTV"></div>
+                           <div class="card-text">
+                                <h3>Solar Power Solutions</h3>
+                                <p class="para">End-to-end solar solutions designed for efficiency, sustainability, and long-term savings.</p>
+                                <ul>
+                                    <li>Residential Solar Installations</li>
+                                    <li>Commercial & Industrial Solar Plants</li>
+                                    <li>On-Grid, Off-Grid Systems, hybrid</li>
+                                    <li>Solar Design, Installation & Commissioning</li>
+                                    <li>Maintenance & Performance Monitoring</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card1">
+                           <div class="image1"><img src="/images/turnkey.png" class="image" alt="CCTV"></div>
+                           <div class="card-text">
+                                <h3>Electrical Turnkey Projects</h3>
+                                <p class="para">Complete electrical solutions from concept to commissioning.</p>
+                                <ul>
+                                    <li>HT & LT Electrical Works</li>
+                                    <li>Power Distribution Systems</li>
+                                    <li>Lighting & Earthing Solutions</li>
+                                    <li>Panel Installation & Cabling</li>
+                                    <li>Industrial & Commercial Electrical Projects</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cards2">
+                         <div class="card1">
+                           <div class="image1"><img src="/images/ai.png" class="image" alt="CCTV"></div>
+                           <div class="card-text">
+                                <h3>AI Software Solutions</h3>
+                                <p class="para">Intelligent AI-powered software tailored to business needs.</p>
+                                <ul>
+                                    <li>Custom AI Applications</li>
+                                    <li>Automation & Data-Driven Solutions</li>
+                                    <li>Computer Vision & Smart Analytics</li>
+                                    <li>AI Integration with Existing Systems</li>
+                                    <li>Scalable Enterprise Software</li>
+                                </ul>
+                            </div>
+                        </div>
+                         <div class="card1">
+                           <div class="image1"><img src="/images/fire.png" class="image" alt="CCTV"></div>
+                           <div class="card-text">
+                                <h3>Fire Fighting & Fire Safety Systems</h3>
+                                <p class="para">Comprehensive fire protection solutions complying with safety standards.</p>
+                                <ul>
+                                    <li>Fire Fighting Piping Systems</li>
+                                    <li>Hydrant & Sprinkler Systems</li>
+                                    <li>Fire Alarm & Detection Systems</li>
+                                    <li>Design, Installation & Testing</li>
+                                    <li>Annual Maintenance & Compliance Support</li>
+                                </ul>
+                            </div>
+                        </div>
+                         <div class="card1">
+                           <div class="image1"><img src="/images/it.png" class="image" alt="CCTV"></div>
+                           <div class="card-text">
+                                <h3>IT & Networking Infrastructure</h3>
+                                <p class="para">Robust IT infrastructure solutions for modern workplaces and campuses.</p>
+                                <ul>
+                                    <li>Campus-Wide Wi-Fi Solutions</li>
+                                    <li>Structured Cabling & Networking</li>
+                                    <li>Server Rooms & Data Infrastructure</li>
+                                    <li>Network Security & Monitoring</li>
+                                    <li>IT Infrastructure for Offices & IT Companies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+               <!-- industries we serve -->
+                 <div class="industriesweserve" id="industries-we-serve">
+                <div class="texdiv1">
+                <h1 class="h1">Industries We Serve</h1>
+                    <p class="p1">Delivering tailored solutions across diverse sectors with specialized expertise.</p>
+                    </div>
+                <div class="cardss1">
+                    <div class="cardd1"> 
+                        <img class="build-icon" src="/images/building-icon.png">
+                        <h4>Residential Buildings & Societies</h4>
+                    </div>
+                    <div class="cardd1"> 
+                        <img class="build-icon" src="/images/commercial.png">
+                        <h4>Commercial Offices & IT Companies</h4>
+                    </div>
+                    <div class="cardd1"> 
+                        <img class="build-icon" src="/images/industrial.png">
+                        <h4>Industrial Facilities & Warehouses</h4>
+                    </div>
+                </div>
+                <div class="cardss2">
+                    <div class="cardd1"> 
+                        <img class="build-icon" src="/images/educational.png">
+                        <h4>Educational Institutions & Campuses</h4>
+                    </div>
+                    <div class="cardd1"> 
+                        <img class="build-icon" src="/images/hospitals.png">
+                        <h4>Hospitals & Healthcare Facilities</h4>
+                    </div>
+                    <div class="cardd1"> 
+                        <img class="build-icon" src="/images/retail.png">
+                        <h4>Retail & Hospitality Sector Solutions</h4>
+                    </div>
+                </div>
+        </div>
+        <!-- why choose nexara -->
+         <div class="why-choose">
+                <div class="texdiv1">
+                <h1 class="h1">Why Choose Nexara Systems?</h1>
+                    <p class="p1">Your trusted partner for comprehensive infrastructure solutions.</p>
+                    </div>
+                <div class="cardss1">
+                    <div class="carddd1"> 
+                        <img class="tick-icon" src="/images/tick.png">
+                        <p class="end">End-to-End Solutions under one<br>roof</p>
+                    </div>
+                    <div class="carddd1"> 
+                        <img class="tick-icon" src="/images/tick.png">
+                        <p class="end">Skilled and Experienced Technical Team</p>
+                    </div>
+                    <div class="carddd1"> 
+                        <img class="tick-icon" src="/images/tick.png">
+                        <p class="end">Quality-Driven Execution for long term success</p>
+                    </div>
+                </div>
+                <div class="cardss2">
+                    <div class="carddd1"> 
+                        <img class="tick-icon" src="/images/tick.png">
+                        <p class="end">Compliance with Safety & Industry Standards</p>
+                    </div>
+                    <div class="carddd1"> 
+                        <img class="tick-icon" src="/images/tick.png">
+                        <p class="end">Timely Delivery Backed by Reliable Support</p>
+                    </div>
+                    <div class="carddd1"> 
+                        <img class="tick-icon" src="/images/tick.png">
+                        <p class="end">Scalable & Future-Ready Technology</p>
+                    </div>
+                </div>
+         </div>
+          <!-- our approach -->
+            <div class="our-approach" id="our_approach">
+                 <div class="texdiv1">
+                <h1 class="h1">Our Approach</h1>
+                    <p class="p1">A systematic methodology ensuring excellence at every stage.</p>
+                    </div>
+                    <div class="cars">
+                        <div class="car1">
+                        <img class="no1" src="/images/1.png">
+                        <h3 class="design">Requirement Analysis</h3>
+                        <p class="understandingclient">Understanding<br> client needs</p>
+                        </div>
+                        <div class="car2">
+                        <img class="no2" src="/images/2.png">
+                        <h3 class="design">Design &<br> Planning</h3>
+                        <p class="understandingclient">Customized<br> solution<br> architecture</p>
+                        </div>
+                        <div class="car1">
+                        <img class="no3" src="/images/3.png">
+                        <h3>Execution</h3>
+                        <p class="understandingclient">Professional<br> installation &<br> implementation</p>
+                        </div>
+                        <div class="car2">
+                        <img class="no4" src="/images/4.png">
+                        <h3>Testing & Commissioning</h3>
+                        <p class="understandingclient">Ensuring<br> performance &<br> safety</p>
+                        </div>
+                        <div class="car1">
+                        <img class="no5" src="/images/5.png">
+                        <h3>Support & Maintenance</h3>
+                        <p class="understandingclient">Long-term<br> reliability</p>
+                        </div>
+                    </div>
+           </div>
+           <!-- lets build -->
+           <div class="lets-build" id="contactt">
+              <div class="texdiv1">
+                <h1 class="h1">Let's Build Smarter Infrastructure Together</h1>
+                    <p class="p1">Whether you need security systems, renewable energy solutions, fire safety infrastructure, AI software, or IT networking, Nexara<br>Systems Pvt. Ltd. is your trusted partner.</p>
+                    </div>
+                    <div class="contents">
+                        <div class="getintouch">
+                            <h3 class="get">Get in Touch</h3>
+                            <p>Contact us today to discuss your project requirements. Our team is ready to help you build the infrastructure of tomorrow.</p>
+                            <div class="c1">
+                                <img src="/images/phone.png" class="phone">
+                                <div><p>Phone</p>
+                                <div class="numbers"><h5>+91 9999681046</h5></div></div>
+                            </div>
+                             <div class="c1">
+                                <img src="/images/phone.png" class="phone">
+                                <div><p>Email</p>
+                                <div class="numbers"><h5>contact@edquest.co.in</h5></div></div>
+                            </div>
+                             <div class="c1">
+                                <img src="/images/phone.png" class="phone">
+                                <div><p>Location</p>
+                                <div class="numbers"><h5>Unit No-12, 1st Floor, M3M Tee Point, Sector-65, Gurgaon,Haryana</h5></div></div>
+                            </div>
+                        </div>
+                        <div class="forms">
+                             <form id="contact-form"> 
+        <!-- Web3Forms Access Key (REPLACE WITH YOUR KEY) -->
+        <input type="hidden" name="access_key" value="dcb1bef5-ed6d-4a70-a33d-9301643e7b3b">
         
-        <p class="description">
-            We're working hard to bring you innovative solutions and cutting-edge technology. 
-            Stay tuned for updates and be among the first to experience what we're building.
-        </p>
-
-        <div class="countdown">
-            <div class="countdown-item">
-                <span class="countdown-number">Soon</span>
-                <span class="countdown-label">Launch</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number">✨</span>
-                <span class="countdown-label">Features</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number">🎯</span>
-                <span class="countdown-label">Mission</span>
-            </div>
+        <!-- Optional: Subject Line -->
+        <input type="hidden" name="subject" value="New Contact Form Submission - Nexara Systems">
+        
+        <!-- Honeypot Spam Protection -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+        
+        <div class="fromdiv"> 
+            <label class="label1" for="name">Your Name</label><br>
+            <input class="inputfeild" type="text" placeholder="John Doe" name="name" required oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1)">
         </div>
-
-        <div class="email-signup">
-            <input type="email" placeholder="Enter your email to stay updated">
-            <button onclick="handleSignup()">Notify Me</button>
+        <div class="fromdiv"> 
+            <label class="label1" for="email">Email Address</label><br>
+            <input class="inputfeild" type="email" placeholder="John@example.com" name="email" required oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1)">
         </div>
-
-        <div class="social-links">
-            <a href="#" class="social-link" title="Facebook">f</a>
-            <a href="#" class="social-link" title="Twitter">𝕏</a>
-            <a href="#" class="social-link" title="LinkedIn">in</a>
-            <a href="#" class="social-link" title="Instagram">📷</a>
+        <div class="fromdiv"> 
+            <label class="label1" for="phone">Phone Number</label><br>
+            <input class="inputfeild" maxlength="10" type="tel" placeholder="+91 XXXXX XXXXX" name="phone" required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
         </div>
+        <div class="fromdiv"> 
+            <label class="label1" for="message">Project Details</label><br>
+            <textarea class="inputfeild1" placeholder="Tell us about your project requirements..." name="message" required oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1)"></textarea>
+        </div>
+        <button class="sendmsg" type="submit">
+            Send Message ➤
+        </button>
+    </form>
+                        <!-- <form> 
+                            <div class="fromdiv"> 
+                             <label class="label1" for="name">Your Name</label><br>
+                            <input class="inputfeild" type="text" placeholder="John Doe" name="name" oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1)">
+                            </div>
+                            <div class="fromdiv"> 
+                             <label class="label1" for="name">Email Address</label><br>
+                            <input class="inputfeild" type="email" placeholder="John@example.com" name="email" oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1)">
+                            </div>
+                            <div class="fromdiv"> 
+                             <label class="label1" for="name">Phone Number</label><br>
+                            <input class="inputfeild" type="tel" placeholder="+91 XXXXX XXXXX" name="phone-number" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                            </div>
+                            <div class="fromdiv"> 
+                             <label class="label1" for="name">Project Details</label><br>
+                            <input class="inputfeild1" type="text" placeholder="Tell us about your project requirements..." name="project-details"  oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1)">
+                            </div>
+                            <button class="sendmsg">
+                                Send Message ➤
+                            </button>
+                        </form> -->
+                        </div>
+                        </div>
+                    </div>
+                    <!-- footer -->
+                          <footer class="footer">
+                            <div class="con1">
+                                <div class="con1-1">
+                                <div class="logo">
+                                     <div><img class="leaf-icon" src="/images/logo.png"></img></div>
+                                    <div><h2>Nexara Systems</h2></div>
+                                    </div>
+                                    <p>Your trusted partner for comprehensive<br>technology and infrastructure solutions.</p>
+                                    <div class="socials">
+                                        <div class="facediv">
+                                        <img class="faceicon" src="/images/facebook.png">
+                                        </div>
+                                         <div class="facediv">
+                                            <img class="xicon" src="/images/x1.png">
+                                        </div>
+                                         <div class="facediv">
+                                            <img class="faceicon" src="/images/linkedin.png">
+                                        </div>
+                                         <div class="facediv" onclick="window.open('https://www.instagram.com/username/', '_blank')">
+                                             <img class="instaicon" src="/images/instaicon.png">
+                                        </div>
+                                    </div>
+                                    </div>
+                                <div class="con1-2">
+                                    <div class="flexi">
+                                        <div class="flexi1">
+                                            <h3>Services</h3>
+                                            <p><a class="hvr" href="#services">CCTV & Surveillance</a></p>
+                                            <p><a class="hvr" href="#services">Solar Power</a></p>
+                                           <p><a class="hvr" href="#services">Electrical Projects</a></p>
+                                            <p><a class="hvr" href="#services">AI Software</a></p>
+                                            <p><a class="hvr" href="#services">Fire Safety</a></p>
+                                            <p><a class="hvr" href="#services">IT Infrastructure</a></p>
+                                        </div>
+                                         <div class="flexi1">
+                                            <h3>Company</h3>
+                                            <p><a class="hvr" href="#who-we-are">About Us</a></p>
+                                            <p><a class="hvr" href="#our_approach">Our Approach</a></p>
+                                            <p><a class="hvr" href="#industries-we-serve">Industries</a></p>
+                                            <p><a class="hvr" href="#contactt">Contact</a></p>
+                            
+                                        </div>
+                                         <div class="flexi2">
+                                            <h3>Contact Info</h3>
+                                        <div class="conta"><p>Phone: <br><span class="numberr">+91 9999681046</span></p></div>
+                                        <div class="conta"><p>Email: <br><span class="numberr">contact@edquest.co.in</span></p></div>
+                                        <div class="conta"><p>Location: <br><span class="numberr">Unit No-12, 1st Floor, M3M Tee Point, Sector-65, Gurgaon,Haryana</span></p></div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="con2">
+                                <div class="i1">© 2026 Nexara Systems Pvt. Ltd. All rights reserved.</div>
+                                <div class="i2">
+                                    <div class="t1">Privacy Policy</div>
+                                        <div class="t2">Terms of Service</div>
+                            </div>
+                            </div>
+                        </footer>
+           </div>
     </div>
-
-    <div class="footer">
-        <p>&copy; 2026 Nexara Systems. All rights reserved.</p>
-    </div>
-
     <script>
-        function handleSignup() {
-            const email = document.querySelector('input[type="email"]').value;
-            if (email && email.includes('@')) {
-                alert('Thank you! We will notify you soon.');
-                document.querySelector('input[type="email"]').value = '';
-            } else {
-                alert('Please enter a valid email address.');
-            }
-        }
+function toggleMenu() {
+  document.getElementById("navMenu").classList.toggle("active");
+}
+</script>
+<!-- jjj -->
+ <script>
+const form = document.getElementById('contact-form');
+const submitBtn = document.querySelector('.sendmsg');
 
-        document.querySelector('input[type="email"]').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                handleSignup();
-            }
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = 'Sending...';
+    submitBtn.disabled = true;
+    
+    const formData = new FormData(form);
+    
+    try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
         });
-    </script>
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            // Success
+            alert('✅ Message sent successfully! We will get back to you soon.');
+            form.reset();
+        } else {
+            // Error
+            alert('❌ Something went wrong. Please try again or email us directly at contact@edquest.co.in');
+            console.log('Error:', data);
+        }
+    } catch (error) {
+        alert('❌ Failed to send message. Please try again.');
+        console.log('Error:', error);
+    } finally {
+        // Restore button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+});
+
+function toggleMenu() {
+  document.getElementById("navMenu").classList.toggle("active");
+}
+</script>
 </body>
 </html>
