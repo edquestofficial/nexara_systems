@@ -3,7 +3,7 @@ name: Deploy Static Website to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - devlop
 
 permissions:
   contents: read
