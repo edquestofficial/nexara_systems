@@ -1,32 +1,79 @@
-name: Deploy Static Website to VPS
+name: Next.js Deploy to VPS
 
 on:
   push:
-    branches:
-      - devlop
+    branches: [ "devlop" ]  
+
 
 jobs:
-  deploy:
+  deploy-nextjs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Deploy Website to VPS
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "."
-          target: "/var/www/nexara-systems"
+      - name: Prepare SSH key
+        env:
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+        run: |
+          set -e
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
 
-      - name: Restart Nginx
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            sudo systemctl restart nginx
+          echo "Adding ${VPS_HOST} to known_hosts..."
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+
+      - name: Sync project to VPS
+        env:
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+        run: |
+          REMOTE_DIR="/var/www/nexara-syatems"
+          SSH_CMD="ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes -p ${VPS_PORT}"
+
+          echo "Ensuring ${REMOTE_DIR} exists on server..."
+          $SSH_CMD ${VPS_USER}@${VPS_HOST} "mkdir -p ${REMOTE_DIR}"
+
+          echo "Syncing repo to ${VPS_USER}@${VPS_HOST}:${REMOTE_DIR}"
+          rsync -avz --delete \
+            -e "$SSH_CMD" \
+            ./ \
+            "${VPS_USER}@${VPS_HOST}:${REMOTE_DIR}/"
+
+      - name: Install deps, build & reload NGINX on server
+        env:
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+        run: |
+          SSH_CMD="ssh -T -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes -p ${VPS_PORT}"
+
+          $SSH_CMD ${VPS_USER}@${VPS_HOST} << 'EOF'
+          set -e
+
+          echo "Moving to project directory..."
+          cd /var/www/adlt
+
+          echo "Installing dependencies..."
+          npm ci
+
+          echo "Building Vite app..."
+          npm run build
+
+          echo "Validating build output..."
+          if [ ! -f dist/index.html ]; then
+            echo "❌ Build failed: dist/index.html not found"
+            exit 1
+          fi
+
+          echo "Reloading nginx..."
+          sudo nginx -t
+          sudo systemctl reload nginx
+
+          echo "✅ nexara deployment completed successfully."
+          EOF
