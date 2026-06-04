@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Nexara Systems </title>
+    <link rel="icon" type="image/png" href="/images/logonew3.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
@@ -12,10 +13,8 @@
         <div class="main">
             <!-- navbar -->
             <div class="navbar">
-                <div class="logo">
-                    <div><img class="leaf-icon" src="/images/logo.png"></img></div>
-                    <div><h2>Nexara Systems</h2>
-                    </div>
+                <div class="logo" style="cursor: pointer;" onclick="window.scrollTo(0,0);">
+                    <div><img class="leaf-icon" src="/images/logonew3.png"></img></div>
                 </div>
                 <div class="nav-texts" id="navMenu">
                     <button class="home" onclick="location.href='#homee'; toggleMenu();">Home</button>
@@ -41,7 +40,7 @@
                   </div>
                 </div >
                     <div class="section2  ">
-                    <img src="/images/image.jpg" class="image-hero">
+                    <img src="/images/heroimgfinal.png" class="image-hero">
                     </div>
                  </div>
             <!-- who we are -->
@@ -130,7 +129,7 @@
                     </div>
                     <div class="cards1">
                         <div class="card1">
-                           <div class="image1"><img src="/images/camera.png" class="image" alt="CCTV"></div>
+                           <div class="image1"><img src="/images/camera1-2.png" class="image" alt="CCTV"></div>
                            <div class="card-text">
                                 <h3>CCTV & Surveillance Solutions</h3>
                                 <p class="para">Advanced CCTV and surveillance systems for homes, businesses, industries, and<br>campuses.</p>
@@ -144,7 +143,7 @@
                             </div>
                         </div>
                         <div class="card1">
-                           <div class="image1"><img src="/images/solar.png" class="image" alt="CCTV"></div>
+                           <div class="image1"><img src="/images/solar-panel.jpg" class="image" alt="CCTV"></div>
                            <div class="card-text">
                                 <h3>Solar Power Solutions</h3>
                                 <p class="para">End-to-end solar solutions designed for efficiency, sustainability, and long-term savings.</p>
@@ -158,7 +157,7 @@
                             </div>
                         </div>
                         <div class="card1">
-                           <div class="image1"><img src="/images/turnkey.png" class="image" alt="CCTV"></div>
+                           <div class="image1"><img src="/images/electrical-turnkey.webp" class="image" alt="CCTV"></div>
                            <div class="card-text">
                                 <h3>Electrical Turnkey Projects</h3>
                                 <p class="para">Complete electrical solutions from concept to commissioning.</p>
@@ -334,12 +333,12 @@
                             <div class="c1">
                                 <img src="/images/phone.png" class="phone">
                                 <div><p>Phone</p>
-                                <div class="numbers"><h5>+91 9999681046</h5></div></div>
+                                <div class="numbers"><h5>+91 9467752177</h5></div></div>
                             </div>
                              <div class="c1">
                                 <img src="/images/mail-icon.png" class="phone">
                                 <div><p>Email</p>
-                                <div class="numbers"><h5>contact@edquest.co.in</h5></div></div>
+                                <div class="numbers"><h5>nexarasystems1@gmail.com</h5></div></div>
                             </div>
                              <div class="c1">
                                 <img src="/images/location-icon.png" class="phone">
@@ -350,7 +349,7 @@
                         <div class="forms">
                              <form id="contact-form"> 
         <!-- Web3Forms Access Key (REPLACE WITH YOUR KEY) -->
-        <input type="hidden" name="access_key" value="dcb1bef5-ed6d-4a70-a33d-9301643e7b3b">
+        <input type="hidden" name="access_key" value="cd04bedb-c9ca-4b48-8956-ba6930838b54">
         
         <!-- Optional: Subject Line -->
         <input type="hidden" name="subject" value="New Contact Form Submission - Nexara Systems">
@@ -406,10 +405,9 @@
                           <footer class="footer">
                             <div class="con1">
                                 <div class="con1-1">
-                                <div class="logo">
-                                     <div><img class="leaf-icon" src="/images/logo.png"></img></div>
-                                    <div><h2>Nexara Systems</h2></div>
-                                    </div>
+                                <div class="logo" style="cursor: pointer;" onclick="window.scrollTo(0,0);">
+                                     <div><img class="leaf-icon" src="/images/logonew3.png"></img></div>
+                                </div>
                                     <p>Your trusted partner for comprehensive <br>technology and infrastructure solutions.</p>
                                     <div class="socials">
                                         <div class="facediv">
@@ -447,8 +445,8 @@
                                         </div>
                                          <div class="flexi2">
                                             <h3>Contact Info</h3>
-                                        <div class="conta"><p>Phone: <br><span class="numberr">+91 9999681046</span></p></div>
-                                        <div class="conta"><p>Email: <br><span class="numberr">contact@edquest.co.in</span></p></div>
+                                        <div class="conta"><p>Phone: <br><span class="numberr">+91 9467752177</span></p></div>
+                                        <div class="conta"><p>Email: <br><span class="numberr">nexarasystems1@gmail.com</span></p></div>
                                         <div class="conta"><p>Location: <br><span class="numberr">Unit No-12, 1st Floor, M3M Tee Point, Sector-65, Gurgaon,Haryana</span></p></div>
                                         </div>
                                         
@@ -496,15 +494,15 @@ form.addEventListener('submit', async function(e) {
         
         if (data.success) {
             // Success
-            alert('✅ Message sent successfully! We will get back to you soon.');
+            alert(' Message sent successfully! We will get back to you soon.');
             form.reset();
         } else {
             // Error
-            alert('❌ Something went wrong. Please try again or email us directly at contact@edquest.co.in');
+            alert(' Something went wrong. Please try again or email us directly at nexarasystems1@gmail.com');
             console.log('Error:', data);
         }
     } catch (error) {
-        alert('❌ Failed to send message. Please try again.');
+        alert('Failed to send message. Please try again.');
         console.log('Error:', error);
     } finally {
         // Restore button

@@ -2,7 +2,12 @@ name: Next.js Deploy to VPS
 
 on:
   push:
+<<<<<<< HEAD
     branches: [ "devlop" ]  
+=======
+    branches:
+      - main
+>>>>>>> f98d9a4 (image change)
 
 
 jobs:
